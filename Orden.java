@@ -57,5 +57,14 @@ public class Orden {
             total += pizza.calcularPrecio();
         }
         return total;
-    }   
+    }  
+    
+    public String describirOrden() {
+        String descripcion = "Orden #" + numeroOrden + " para " + nombreCliente + "\nEstado: " + estado + "\n";
+        for (Pizza pizza : pizzas) {
+            descripcion += pizza.describirPizza() + "\n";
+        }
+        descripcion += "Total a pagar: $" + calcularTotal();
+        return descripcion;
+    }
 }

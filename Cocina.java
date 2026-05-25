@@ -4,10 +4,12 @@ public class Cocina {
 
     private ArrayList<Orden> ordenes;
     private Orden ordenActual;
+    private float DineroAcumulado;
 
     public Cocina() {
-        this.ordenes = new ArrayList<>();
+        this.ordenes = new ArrayList<Orden>();
         this.ordenActual = null;
+        this.DineroAcumulado = 0;
     }
 
     public ArrayList<Orden> getOrdenes() {
@@ -44,43 +46,34 @@ public class Cocina {
     }
 
     public Orden getordenActual() {
+        ordenActual = (ordenes.get(0));
+        procesarOrden(ordenActual);
         return ordenActual;
     }
 
-    public void almacenarOrden(Orden orden) {
-        ordenes.add(orden);
+    public void almacenarOrden(Orden neworden) {
+        ordenes.add(neworden);
     }
 
     public void procesarOrden(Orden orden) {
-        if (orden.getEstado() == EstadoOrden.EN_ESPERA) {
-            orden.setEstado(EstadoOrden.EN_PROCESO);
-            this.ordenActual = orden;
-            System.out.println("Procesando orden #" + orden.getNumeroOrden() + " para " + orden.getNombreCliente());
-        } else {
-            System.out.println("La orden #" + orden.getNumeroOrden() + " no está en espera.");
-        }
-    }
-
-    public void ensamblarPizza() {
-        if (ordenActual != null && ordenActual.getEstado() == EstadoOrden.EN_PROCESO) {
-            for (Pizza pizza : ordenActual.getPizzas()) {
-              for (Ingrediente ingrediente : pizza.getIngredientes()) {
-                ingrediente.preparar();
-            }
-        }
-        } else {
-            System.out.println("No hay una orden en proceso para ensamblar la pizza.");
-        }
+        ordenActual.setEstado(EstadoOrden.EN_PROCESO);
     }
 
     public void entregarOrden() {
         if (ordenActual != null && ordenActual.getEstado() == EstadoOrden.EN_PROCESO) {
             ordenActual.setEstado(EstadoOrden.COMPLETADA);
             System.out.println("Orden #" + ordenActual.getNumeroOrden() + " entregada.");
-            this.ordenActual = null;
+            DineroAcumulado += ordenActual.calcularTotal();
+            ordenes.remove(ordenActual);
+            ordenActual = null;
+            System.out.println("Dinero acumulado: $" + DineroAcumulado);
         } else {
             System.out.println("No hay una orden en proceso para entregar.");
         }
+    }
+
+    public float getDineroAcumulado() {
+        return DineroAcumulado;
     }
 
 }

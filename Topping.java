@@ -24,7 +24,7 @@ public class Topping extends Ingrediente {
 
     @Override
     public String describir() {
-        return "Topping: " + getNombre() + "\nPrecio: $" + getPrecio() + "\nFrio: " + frio + "\nDulce: " + dulce;
+        return "Topping: " + getNombre() + "\nPrecio: $" + getPrecio() + "\nFrio: " + frio + "\nDulce: " + dulce + "\n";
     }
 }
 

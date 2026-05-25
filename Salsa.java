@@ -18,7 +18,7 @@ public class Salsa extends Ingrediente {
 
     @Override
     public String describir() {
-        return "Salsa: " + getNombre() + "\nPrecio: $" + getPrecio() + "\nPicante: " + picante;
+        return "Salsa: " + getNombre() + "\nPrecio: $" + getPrecio() + "\nPicante: " + picante + "\n";
     }
 
 }

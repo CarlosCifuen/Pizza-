@@ -12,17 +12,12 @@ public GenOrdenes(Cocina cocina) {
     this.cocina = cocina;    
     }
 
-        public Orden generarOrden() {
-        // nombres random de clientes pingüinos :)
+    public Orden generarOrden() {
         String[] nombres = {"Tux", "Wheezy", "Skipper", "Kowalski", "Rico", "Pingu", "Pablo"};
         String nombreRandom = nombres[random.nextInt(nombres.length)];
         
         Orden orden = new Orden(nombreRandom, cocina.getOrdenes().size() + 1);
-        
-        int cantidadPizzas = random.nextInt(3) + 1; // entre 1 y 3 pizzas
-        for (int i = 0; i < cantidadPizzas; i++) {
-            orden.agregarPizza(generarPizza());
-        }
+        orden.agregarPizza(generarPizza()); // siempre una sola pizza
         return orden;
     }
 

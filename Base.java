@@ -17,12 +17,12 @@ public class Base extends Ingrediente {
 
     @Override
     public void preparar() {
-        System.out.println("Preparando la base: " + getNombre() + " \ncon cocción: " + coccion);  
+        System.out.println("Preparando la base con cocción: " + coccion);  
     }
 
     @Override
     public String describir() {
-        return "Base: " + getNombre() + "\nPrecio: $" + getPrecio() + "\nCocción: " + coccion;
+        return "Base: " + coccion + "\nPrecio: $" + getPrecio() + "\n";
     }
 
 }
